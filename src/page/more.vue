@@ -15,7 +15,7 @@
 </template>
 <script>
 	import bottomNav from '../components/bottomNav.vue'
-	import axios from 'axios'
+	// import this.$axios from 'this.$axios'
 	import {getCookie} from '../util/cookie.js'
 	export default{
 		components:{bottomNav},
@@ -40,7 +40,7 @@
 					alert('内容不能为空哦~~')
 					return false;
 				}
-				axios.post('api/v1/topics',{accesstoken:getCookie('accesstoken'),title:this.articleTitle,tab:this.tab,content:this.valueText}).then(res=>{
+				this.$axios.post('api/v1/topics',{accesstoken:getCookie('accesstoken'),title:this.articleTitle,tab:this.tab,content:this.valueText}).then(res=>{
 					if(res.data.success){
 						alert('发布成功啦~~')
 					    this.$router.push('/topic/'+res.data.topic_id)

@@ -36,7 +36,7 @@
 	</div>
 </template>
 <script>
-	import axios from 'axios';
+	// import this.$axios from 'this.$axios';
 	export default{
 		data(){
 			return {
@@ -60,7 +60,7 @@
 			//tab切换
 			changetab(val){
 				this.tabName=val;
-				axios.get('api/v1/topics?tab='+val+'&limit=10')
+				this.$axios.get('api/v1/topics?tab='+val+'&limit=10')
 				.then(res=>{
 					if(res.data.data.length===0){
 						this.loaded=false;
@@ -105,7 +105,7 @@
 		    	if (this.nomore &&!this.loaded) return;
 		    	if(this.$refs.viewBox.scrollTop+ this.$refs.viewBox.offsetHeight+20 >= this.$refs.viewBox.scrollHeight){
 					this.loadingTip=true
-					axios.get('/api/v1/topics?tab='+this.tabName+'&page='+(++this.page)+'&limit=10')
+					this.$axios.get('/api/v1/topics?tab='+this.tabName+'&page='+(++this.page)+'&limit=10')
 					.then(
 						res=>{
 

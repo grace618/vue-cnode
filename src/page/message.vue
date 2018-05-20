@@ -30,7 +30,7 @@
 import {getCookie} from '../util/cookie.js'
 import navbottom from '../components/bottomNav.vue'
 import Vue from 'vue'
-import axios from 'axios'
+// import this.$axios from 'this.$axios'
 	export default{
 		data(){
 			return {
@@ -63,7 +63,7 @@ import axios from 'axios'
 		methods:{
 			//获取消息
 			getmessage(){
-				axios.get('api/v1/messages?accesstoken='+getCookie('accesstoken'))
+				this.$axios.get('api/v1/messages?accesstoken='+getCookie('accesstoken'))
 				.then(
 					res=>{
 						this.message=res.data
@@ -71,7 +71,7 @@ import axios from 'axios'
 				)
 			},
 			getcount(){
-				axios.get('api/v1/message/count?accesstoken='+getCookie('accesstoken'))
+				this.$axios.get('api/v1/message/count?accesstoken='+getCookie('accesstoken'))
 				.then(
 					res=>{
 						this.count=res.data.data

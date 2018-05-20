@@ -10,7 +10,7 @@
 <script>
 import bottomNav from '../components/bottomNav.vue'
 import {setCookie} from '../util/cookie.js'
-import axios from 'axios';
+// import this.$axios from 'this.$axios';
 export default{
   components:{bottomNav},
   data(){
@@ -20,7 +20,7 @@ export default{
 		},
 		methods:{
 			login(){
-				axios.post('api/v1/accesstoken',{
+				this.$axios.post('api/v1/accesstoken',{
 					accesstoken:this.info
 				})
 				.then(

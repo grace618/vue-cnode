@@ -60,7 +60,7 @@
 </template>
 <script>
 	// import brand from '../components/brand.vue';
-	import axios from 'axios';
+	// import this.$axios from 'this.$axios';
 	import {getCookie} from '../util/cookie.js'
 	export default{
 		// components:{brand},
@@ -97,7 +97,7 @@
 		methods:{
 			//获取文章内容
 			getData(){
-				axios.get('api/v1/topic/'+this.id)
+				this.$axios.get('api/v1/topic/'+this.id)
 				.then(res=>{
 					this.item=res.data.data;
 					this.mtitle=this.item.title
@@ -115,7 +115,7 @@
 	 	    //回复文章
 	 	    publish_reply(){
 	 	    	if(getCookie('accesstoken')){
-	 	    		axios.post('api/v1/topic/'+this.id+'/replies?',{
+	 	    		this.$axios.post('api/v1/topic/'+this.id+'/replies?',{
 	 	    			accesstoken:getCookie('accesstoken'),
 	 	    			content:this.textarea_content})
 	 	    		.then(
@@ -146,7 +146,7 @@
 		 	//回复评论的评论
 		 	commitComment(index){
 		 		if(getCookie('accesstoken')){
-		 			axios.post('api/v1/topic/'+this.id+'/replies?',{
+		 			this.$axios.post('api/v1/topic/'+this.id+'/replies?',{
 		 				accesstoken:getCookie('accesstoken'),
 		 				content:'@'+this.item.replies[index].author.loginname+' '+this.reply_content,
 			 		reply_id:this.item.replies[index].id//每条评论都有一个ID
@@ -165,7 +165,7 @@
 		 	//收藏
 		 	iscollect(){
 		 		let collectapi=this.isCollect?'de_collect':'collect'
-		 		axios.post('api/v1/topic/'+collectapi+'?',{
+		 		this.$axios.post('api/v1/topic/'+collectapi+'?',{
 		 			accesstoken:getCookie('accesstoken'),
 		 			topic_id :this.id
 		 		}).
@@ -179,7 +179,7 @@
 		 		const topicid=this.id
 		 		let that=this
 		 		if(!getCookie('accesstoken')) return;
-		 		axios.get('api/v1/user/'+getCookie('username'))
+		 		this.$axios.get('api/v1/user/'+getCookie('username'))
 		 		.then(res=>{
 		 			if(res.data.data.collect_topics.length!=0){
 		 				res.data.data.collect_topics.find(function(value,index,arr){
@@ -200,7 +200,7 @@
 		 	//点赞
 		 	like(index){
 		 		if( !getCookie('accesstoken')){return alert('请先登录~')}
-		 			axios.post('api/v1/reply/'+this.item.replies[index].id+'/ups',{
+		 			this.$axios.post('api/v1/reply/'+this.item.replies[index].id+'/ups',{
 		 				accesstoken:getCookie('accesstoken')
 		 			})
 		 		.then(res=>{

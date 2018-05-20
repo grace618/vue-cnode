@@ -3,12 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from 'axios'
+// import axios from 'axios'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import filters from './util/dateFormatter.js'
+import axios from './api/index.js'
 Vue.config.productionTip = false
-Vue.prototype.$ajax=axios
+Vue.prototype.$axios=axios
 Vue.use(mavonEditor)
 /* eslint-disable no-new */
 //全局注册组件

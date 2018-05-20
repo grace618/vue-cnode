@@ -53,7 +53,7 @@
 </template>
 <script>
 	import Vue from 'vue'
-	import axios from 'axios';
+	// import this.$axios from 'this.$axios';
 	export default{
 		data(){
 			return {
@@ -71,7 +71,7 @@
 				this.$router.go(-1)
 			},
 			getinfo(){
-					axios.get('api/v1/user/'+this.user)
+					this.$axios.get('api/v1/user/'+this.user)
 			        .then(
 			        	res=>{
 			        		this.item=res.data.data;

@@ -68,7 +68,7 @@
 </template>
 <script>
 import navbottom from '../components/bottomNav.vue'
-import axios from 'axios'
+// import this.$axios from 'this.$axios'
 import Vue from 'vue'
 import {getCookie,delCookie} from '../util/cookie.js'
 export default{
@@ -105,7 +105,7 @@ export default{
       	methods:{
 			//验证从cookie获得的accesstoken
 			getuser(){
-				axios.post('api/v1/accesstoken',{
+				this.$axios.post('api/v1/accesstoken',{
 					accesstoken:this.accesstoken})
 				.then(
 					res=>{
@@ -116,7 +116,7 @@ export default{
 			},
 			//传入username，获取用户信息
 			getinfo(){
-				axios.get('api/v1/user/'+this.user.loginname)
+				this.$axios.get('api/v1/user/'+this.user.loginname)
 				.then(
 					res=>{
 						this.item=res.data.data;
