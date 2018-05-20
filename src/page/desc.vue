@@ -16,9 +16,9 @@
 		<section class="aticlecontent" id="top">
 			<title class="ititle">{{item.title}}</title>
 			<div class="article-desc">
-				<router-link :to="'/user/'+item.author.loginname" class="avatar_url"><img :src="item.author.avatar_url" alt=""></router-link>
+				<router-link :to="'/user/'+item.author.loginname" class="avatar_url" ><img :src="item.author.avatar_url" alt=""></router-link>
 				<div>
-					<span v-if="item.author.loginname!=null">{{item.author.loginname}}</span><span>{{item.create_at|dateformatter}}</span>
+					<span >{{item.author.loginname}}</span><span>{{item.create_at|dateformatter}}</span>
 				</div>
 				<div>最后回复：<span>{{item.last_reply_at|dateformatter}}</span> 浏览量：<span>{{item.visit_count}}</span></div>
 			</div>
@@ -33,7 +33,7 @@
 					<li v-for='(val,index) in item.replies' class="replies">
 						<div>
 							<a href="" class="avatar_url"><img :src="val.author.avatar_url" alt=""></a>
-							<span v-if="val.author.loginname!=null">{{val.author.loginname}}</span>
+							<span>{{val.author.loginname}}</span>
 							<i class="good" @click='like(index)'>{{item.replies[index].ups.length}}</i>
 							<span class="comments" @click='commentshow(index)'></span>
 						</div>
@@ -68,7 +68,10 @@
 			return {
 				mtitle:'title',
 				id: this.$route.params.id,
-				item:[],
+				item:{
+					replies:{},
+					author:{}
+				},
 				textarea_content:'',
 				i:-1,
 				reply_content:'',
@@ -390,6 +393,7 @@
 	.comment-btn span{
 		flex: 0 0 5%;
 		width: 30%;
+		padding: 0 10px;
 		display: inline-block;
 	}
 </style>

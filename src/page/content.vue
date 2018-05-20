@@ -103,14 +103,12 @@
 		    	// var curTop = document.documentElement.scrollTop || document.body.scrollTop;
 		    	// console.log(this.$refs.viewBox.scrollTop+this.$refs.viewBox.offsetHeight,this.$refs.viewBox.scrollHeight)
 		    	if (this.nomore &&!this.loaded) return;
-		    	if(this.$refs.viewBox.scrollTop+ this.$refs.viewBox.offsetHeight+20 >= this.$refs.viewBox.scrollHeight){
+		    	if(this.$refs.viewBox.scrollTop+ this.$refs.viewBox.offsetHeight+5 >= this.$refs.viewBox.scrollHeight){
 					this.loadingTip=true
 					this.$axios.get('/api/v1/topics?tab='+this.tabName+'&page='+(++this.page)+'&limit=10')
 					.then(
 						res=>{
-
 							let arr=res.data.data;
-							console.log(arr.length)
 							if(arr.length===0){
 									//some tips
 									this.loaded=false
@@ -123,7 +121,7 @@
 								// ES6的合并数组
 								//[...arr1, ...arr2, ...arr3]
 								this.site=[...this.site,...arr]
-								this.loadingTip=false
+								this.loadingTip=true//这里不知道为什么突然看不到loading图了
 							}
 							)
 					.catch(err=>{

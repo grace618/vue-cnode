@@ -18,7 +18,7 @@
 			<div class="item1">
 				<div class="item01" @click='showdetail(0,$event)'>
 					<i>=</i>最近的话题
-					<span>{{item.recent_topics.length}}{{arrow[0]}}</span>
+					<span >{{item.recent_topics.length}}{{arrow[0]}}</span>
 				    <!-- <i></i> -->
 			    </div>
 				<div class="list" v-show='arr[0]' v-model='arr[0]'>
@@ -78,7 +78,11 @@ export default{
 		data(){
 			return {
 				accesstoken:'', //接收路由信息里的参数
-				item:[],
+				item:{
+					recent_topics:{},
+					collect_topics:{},
+					recent_replies:{}
+				},
 				user:{},
 				arr:[false,false,false],
 				arrow:['^','^','^']

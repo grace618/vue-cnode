@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        //  '/api/v1/**': {
-        //     target: 'https://www.vue-js.com/', // 你接口的域名
-        //     secure: false,
-        //     changeOrigin: false,
-        // }
+         '/api/v1/**': {
+            target: 'https://www.vue-js.com/', // 你接口的域名
+            secure: false,
+            changeOrigin: false,
+        }
     },
 
     // Various Dev Server settings
